@@ -30,9 +30,8 @@
 //     document.getElementById("container").appendChild(name2);
 // })
 
-document.body.style.backgroundColor = "wheat"
+document.body.style.backgroundColor = "#F0F4FA"
 
-      
 
         //DIV
         var div = document.getElementById("container");
@@ -40,48 +39,71 @@ document.body.style.backgroundColor = "wheat"
         div.setAttribute("class", "container");
         div.style.padding = "4%"
 
-         // Intro    
 
+        //input div
+
+        var inputdiv = document.createElement("div");
+        inputdiv.id = "inputdiv"
+        inputdiv.setAttribute("class", "p-5")
+        div.appendChild(inputdiv);
+        inputdiv.style.display = "flex"
+
+         // textField DOM
+
+       var textField = document.createElement("input");
+       textField.placeholder = "Enter Your Coutry Name"
+       textField.setAttribute("class", "container form-control")
+       textField.setAttribute("id", "myInput");
+       textField.style.flex = "0.7"
+       
+       inputdiv.appendChild(textField)
+       
+       
+
+       // Get Button
+
+       var getButton = document.createElement("button");
+       getButton.innerText = "GET"
+       getButton.setAttribute("class", "container btn btn-outline-danger");
+       getButton.setAttribute("onclick", "handleClick()")
+       getButton.style.flex = "0.1"
+       inputdiv.appendChild(getButton)
+
+
+        //Div2
+        var div2 = document.getElementById("container2");
+        div2.style.alignItems = "center"
+        div2.setAttribute("class", "container2");
+        div2.style.padding = "4%"
+        
+        
+         // Intro    
+       var headingdiv = document.getElementById("headingdiv")
        var heading = document.createElement("h4");
        heading.innerText = "Welcome To Restcounties API"
        heading.style.fontWeight = "bold"
        heading.style.textAlign = "center"
        heading.style.fontFamily = "'Bitter', serif";
-       div.appendChild(heading);
+       headingdiv.appendChild(heading)
 
-      // textField DOM
-      var textField = document.createElement("input");
-      div.appendChild(textField);
-      textField.setAttribute("placeholder", "Search For Country Here !!")
-      textField.setAttribute("class", "container")
-      textField.setAttribute("id", "myInput")
-      textField.style.width = "500px";
-      textField.style.height = "50px"
-      textField.style.margin = "2%"
-      textField.style.marginLeft = "300px"
-
-
-
-      // Get Button
-
-      var getButton = document.createElement("button");
-      var div = document.getElementById("container");
-      div.appendChild(getButton);
-      getButton.style.width = "100px"
-      getButton.style.height = "50px"
-      getButton.innerText = "GET"
-      getButton.setAttribute("class", "container btn btn-outline-danger rounded");
-      getButton.setAttribute("onclick", "handleClick()")
-
-
+    
 
 function handleClick(){
-            
+    
+    
     var value = document.getElementById("myInput").value;
 
-    var url = "https://restcountries.eu/rest/v2/name/" + value
+    if(value === "" || null){
+        alert("Please Enter Any Value")
+    }else{
+        value
+    }
+
+    var url =  `https://restcountries.eu/rest/v2/name/${value}?fullText=true;`
 
     var data = fetch(url)
+
+  
 
     
     data
@@ -95,24 +117,6 @@ function handleClick(){
 
     .then(function (somedata) {
 
-       
-
-
-
-
-
- 
-
-        
-
-
-    
-
-        //row
-
-        var row = document.createElement("div");
-        row.setAttribute("class", "row");
-        div.appendChild(row);
 
 
         //div 2
@@ -121,6 +125,8 @@ function handleClick(){
         div2.setAttribute("class", "container2")
         div2.setAttribute("id", "container2")
         div.appendChild(div2);
+        div2.style.border = 'solid'
+        div2.style.borderRadius = "20px"
 
 
 
@@ -219,17 +225,20 @@ function handleClick(){
             //  div.setAttribute("id", "container3")
             //  div3.setAttribute("class", "container3 col-4");
             //  div3.appendChild(row);
+        
 
         }
 
-
+    
 
     })
-
+    
 
     .catch(function (err) {
         console.log(err)
     })
+
+
 
     
 } 
