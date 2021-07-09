@@ -1,0 +1,13 @@
+.input{
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    
+
+}
+
+.button{
+    width: 10% ;
+   
+
+}
